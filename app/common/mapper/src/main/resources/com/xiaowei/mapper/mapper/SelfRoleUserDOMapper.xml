@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfRoleUserDOMapper">
+    <!-- 自动生成,请修改 SELF_ROLE_USER.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfRoleUserDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="COMP_ID" property="compId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="USER_ID" property="userId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,COMP_ID,ROLE_ID,USER_ID,CREATE_TIME
+    </sql>
+
+
+        <!--插入表:SELF_ROLE_USER-->
+        <insert id="insert" >
+                    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+                SELECT
+                LAST_INSERT_ID()
+            </selectKey>
+        INSERT INTO SELF_ROLE_USER(
+            
+            COMP_ID
+            ,ROLE_ID
+            ,USER_ID
+            ,CREATE_TIME
+        )VALUES(
+            
+            #{compId,jdbcType=BIGINT}
+            ,#{roleId,jdbcType=BIGINT}
+            ,#{userId,jdbcType=BIGINT}
+            ,#{createTime,jdbcType=TIMESTAMP}
+        )
+        </insert>
+
+        <!--更新表:SELF_ROLE_USER-->
+        <update id="update" >
+                    UPDATE /*MS-SELF-ROLE-USER-UPDATE*/ SELF_ROLE_USER
+            SET
+                    COMP_ID         = #{compId,jdbcType=BIGINT}
+                    ,ROLE_ID         = #{roleId,jdbcType=BIGINT}
+                    ,USER_ID         = #{userId,jdbcType=BIGINT}
+                    ,CREATE_TIME     = #{createTime,jdbcType=TIMESTAMP}
+            WHERE
+                ID              = #{id,jdbcType=BIGINT}
+        </update>
+
+        <!--根据主键删除数据:SELF_ROLE_USER-->
+        <delete id="deleteById" >
+                    DELETE /*MS-SELF-ROLE-USER-DELETEBYID*/ FROM SELF_ROLE_USER
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </delete>
+
+        <!--根据主键获取数据:SELF_ROLE_USER-->
+        <select id="getById" resultMap="BaseResultMap">
+                    SELECT /*MS-SELF-ROLE-USER-GETBYID*/  <include refid="Base_Column_List" /> FROM SELF_ROLE_USER
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </select>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfRoleProductMapper">
+    <!-- 自动生成,请修改 SELF_ROLE_PRODUCT.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfRoleProductDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="GROUP_ID" property="groupId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="PRODUCT_ID" property="productId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,ROLE_ID,GROUP_ID,PRODUCT_ID,CREATE_TIME
+    </sql>
+
+
+        <!--插入表:SELF_ROLE_PRODUCT-->
+        <insert id="insert" >
+            insert into self_role_product
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id!=null">
+                    id,
+                </if>
+                <if test="roleId!=null">
+                    role_id,
+                </if>
+                <if test="groupId!=null">
+                    group_id,
+                </if>
+                <if test="productId!=null">
+                    product_id,
+                </if>
+                <if test="createTime!=null">
+                    create_time,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id!=null">
+                    #{id,jdbcType=BIGINT},
+                </if>
+                <if test="roleId!=null">
+                    #{roleId,jdbcType=BIGINT},
+                </if>
+                <if test="groupId!=null">
+                    #{groupId,jdbcType=BIGINT},
+                </if>
+                <if test="productId!=null">
+                    #{productId,jdbcType=BIGINT},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime,jdbcType=TIMESTAMP},
+                </if>
+            </trim>
+        </insert>
+    <update id="update">
+        update self_role_product
+        <set>
+            <if test="id!=null">
+               id=#{id,jdbcType=BIGINT},
+            </if>
+            <if test="roleId!=null">
+               role_id=#{roleId,jdbcType=BIGINT},
+            </if>
+            <if test="groupId!=null">
+                group_id=#{groupId,jdbcType=BIGINT},
+            </if>
+            <if test="productId!=null">
+                product_id=#{productId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime!=null">
+                create_time=#{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+    </update>
+</mapper>

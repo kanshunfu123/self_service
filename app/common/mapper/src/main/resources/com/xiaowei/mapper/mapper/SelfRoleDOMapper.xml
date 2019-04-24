@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfRoleDOMapper">
+    <!-- 自动生成,请修改 SELF_ROLE.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfRoleDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="COMP_ID" property="compId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="UUID" property="uuid" jdbcType="VARCHAR" javaType="String"/>
+            <result column="STATUS" property="status" jdbcType="CHAR" javaType="String"/>
+            <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+            <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="ROLE_TYPE" property="roleType" jdbcType="CHAR" javaType="String"/>
+            <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,COMP_ID,UUID,STATUS,DEL_FLAG,CREATE_BY,ROLE_NAME,ROLE_TYPE,UPDATE_BY,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+
+        <!--插入表:SELF_ROLE-->
+        <insert id="insert" >
+                    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+                SELECT
+                LAST_INSERT_ID()
+            </selectKey>
+        INSERT INTO SELF_ROLE(
+            
+            COMP_ID
+            ,UUID
+            ,STATUS
+            ,DEL_FLAG
+            ,CREATE_BY
+            ,ROLE_NAME
+            ,ROLE_TYPE
+            ,UPDATE_BY
+            ,CREATE_TIME
+            ,UPDATE_TIME
+        )VALUES(
+            
+            #{compId,jdbcType=BIGINT}
+            ,#{uuid,jdbcType=VARCHAR}
+            ,#{status,jdbcType=CHAR}
+            ,#{delFlag,jdbcType=CHAR}
+            ,#{createBy,jdbcType=VARCHAR}
+            ,#{roleName,jdbcType=VARCHAR}
+            ,#{roleType,jdbcType=CHAR}
+            ,#{updateBy,jdbcType=VARCHAR}
+            ,#{createTime,jdbcType=TIMESTAMP}
+            ,#{updateTime,jdbcType=TIMESTAMP}
+        )
+        </insert>
+
+        <!--更新表:SELF_ROLE-->
+        <update id="update" >
+                    UPDATE /*MS-SELF-ROLE-UPDATE*/ SELF_ROLE
+            SET
+                    COMP_ID         = #{compId,jdbcType=BIGINT}
+                    ,UUID            = #{uuid,jdbcType=VARCHAR}
+                    ,STATUS          = #{status,jdbcType=CHAR}
+                    ,DEL_FLAG        = #{delFlag,jdbcType=CHAR}
+                    ,CREATE_BY       = #{createBy,jdbcType=VARCHAR}
+                    ,ROLE_NAME       = #{roleName,jdbcType=VARCHAR}
+                    ,ROLE_TYPE       = #{roleType,jdbcType=CHAR}
+                    ,UPDATE_BY       = #{updateBy,jdbcType=VARCHAR}
+                    ,CREATE_TIME     = #{createTime,jdbcType=TIMESTAMP}
+                    ,UPDATE_TIME     = #{updateTime,jdbcType=TIMESTAMP}
+            WHERE
+                ID              = #{id,jdbcType=BIGINT}
+        </update>
+
+        <!--根据主键删除数据:SELF_ROLE-->
+        <delete id="deleteById" >
+                    DELETE /*MS-SELF-ROLE-DELETEBYID*/ FROM SELF_ROLE
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </delete>
+
+        <!--根据主键获取数据:SELF_ROLE-->
+        <select id="getById" resultMap="BaseResultMap">
+                    SELECT /*MS-SELF-ROLE-GETBYID*/  <include refid="Base_Column_List" /> FROM SELF_ROLE
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </select>
+</mapper>

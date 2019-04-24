@@ -1,0 +1,276 @@
+<!DOCTYPE table SYSTEM "../config/table-config-1.0.dtd">
+<table sqlname="SELF_USER" physicalName="SELF_USER" remark="自助服务-用户">
+    <!--  特殊字符说明  &lt;&gt;   <> -->
+
+    <operation name="insert" paramtype="object" remark="插入表:SELF_USER">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO SELF_USER(
+
+        COMP_ID
+        ,UUID
+        ,STATE
+        ,REMARK
+        ,DEL_FLAG
+        ,CREATE_BY
+        ,UPDATE_BY
+        ,U__AUTH_SALT
+        ,U_LOGIN_PWD
+        ,U_NICKNAME
+        ,U_LOGIN_NAME
+        ,CREATE_TIME
+        ,UPDATE_TIME
+        )VALUES(
+
+        #{compId,jdbcType=BIGINT}
+        ,#{uuid,jdbcType=VARCHAR}
+        ,#{state,jdbcType=CHAR}
+        ,#{remark,jdbcType=VARCHAR}
+        ,#{delFlag,jdbcType=CHAR}
+        ,#{createBy,jdbcType=VARCHAR}
+        ,#{updateBy,jdbcType=VARCHAR}
+        ,#{uAuthSalt,jdbcType=VARCHAR}
+        ,#{uLoginPwd,jdbcType=VARCHAR}
+        ,#{uNickname,jdbcType=VARCHAR}
+        ,#{uLoginName,jdbcType=VARCHAR}
+        ,#{createTime,jdbcType=TIMESTAMP}
+        ,#{updateTime,jdbcType=TIMESTAMP}
+        )
+    </operation>
+
+    <operation name="update" paramtype="object" remark="更新表:SELF_USER">
+        UPDATE SELF_USER
+        SET
+        COMP_ID = #{compId,jdbcType=BIGINT}
+        ,UUID = #{uuid,jdbcType=VARCHAR}
+        ,STATE = #{state,jdbcType=CHAR}
+        ,REMARK = #{remark,jdbcType=VARCHAR}
+        ,DEL_FLAG = #{delFlag,jdbcType=CHAR}
+        ,CREATE_BY = #{createBy,jdbcType=VARCHAR}
+        ,UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+        ,U__AUTH_SALT = #{uAuthSalt,jdbcType=VARCHAR}
+        ,U_LOGIN_PWD = #{uLoginPwd,jdbcType=VARCHAR}
+        ,U_NICKNAME = #{uNickname,jdbcType=VARCHAR}
+        ,U_LOGIN_NAME = #{uLoginName,jdbcType=VARCHAR}
+        ,CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        ,UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+    </operation>
+
+    <operation name="deleteById" multiplicity="one" remark="根据主键删除数据:SELF_USER">
+        DELETE FROM SELF_USER
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+    </operation>
+
+    <operation name="getById" multiplicity="one" remark="根据主键获取数据:SELF_USER">
+        SELECT * FROM SELF_USER
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+    </operation>
+    <operation name="uuid" multiplicity="one" remark="根据主键获取数据:SELF_USER">
+        SELECT id, uuid, comp_id, u_login_name, u__auth_salt, u_login_pwd, u_nickname, name_top,
+        name_bottom, remark, state, del_flag,sys_login_number FROM self_user
+        WHERE
+        uuid = #{uuid,jdbcType=VARCHAR}
+    </operation>
+    <operation name="login" multiplicity="one">
+        SELECT
+        id, uuid, comp_id, u_login_name, u__auth_salt, u_login_pwd, u_nickname, name_top,
+        name_bottom, remark, state, del_flag,sys_login_number,u_phone
+        from self_user
+        where u_login_name=#{u_login_name,jdbcType=VARCHAR}
+    </operation>
+    <operation name="checkUser" multiplicity="one" paramtype="object" resulttype="int">
+        select count(id) from self_user
+        <trim prefix="where" prefixOverrides="and">
+            <if test="uPhone!=null and uPhone.trim()!=''">
+                and u_phone=#{uPhone,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </operation>
+    <operation name="insertSelective" paramtype="object">
+        insert into self_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="compId != null">
+                comp_id,
+            </if>
+            <if test="uLoginName != null">
+                u_login_name,
+            </if>
+            <if test="uAuthSalt != null">
+                u__auth_salt,
+            </if>
+            <if test="uLoginPwd != null">
+                u_login_pwd,
+            </if>
+            <if test="uNickname != null">
+                u_nickname,
+            </if>
+            <if test="uPhone != null">
+                u_phone,
+            </if>
+            <if test="sysLoginNumber != null">
+                sys_login_number,
+            </if>
+            <if test="nameTop != null">
+                name_top,
+            </if>
+            <if test="nameBottom != null">
+                name_bottom,
+            </if>
+            <if test="uRegistType != null">
+                u_regist_type,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="compId != null">
+                #{compId,jdbcType=BIGINT},
+            </if>
+            <if test="uLoginName != null">
+                #{uLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="uAuthSalt != null">
+                #{uAuthSalt,jdbcType=VARCHAR},
+            </if>
+            <if test="uLoginPwd != null">
+                #{uLoginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="uNickname != null">
+                #{uNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhone != null">
+                #{uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="sysLoginNumber != null">
+                #{sysLoginNumber,jdbcType=INTEGER},
+            </if>
+            <if test="nameTop != null">
+                #{nameTop,jdbcType=VARCHAR},
+            </if>
+            <if test="nameBottom != null">
+                #{nameBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="uRegistType != null">
+                #{uRegistType,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </operation>
+    <operation name="updateByPrimaryKeySelective" paramtype="object">
+        update self_user
+        <set>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="compId != null">
+                comp_id = #{compId,jdbcType=BIGINT},
+            </if>
+            <if test="uLoginName != null">
+                u_login_name = #{uLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="uAuthSalt != null">
+                u__auth_salt = #{uAuthSalt,jdbcType=VARCHAR},
+            </if>
+            <if test="uLoginPwd != null">
+                u_login_pwd = #{uLoginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="uNickname != null">
+                u_nickname = #{uNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhone != null">
+                u_phone = #{uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="sysLoginNumber != null">
+                sys_login_number = #{sysLoginNumber,jdbcType=INTEGER},
+            </if>
+            <if test="nameTop != null">
+                name_top = #{nameTop,jdbcType=VARCHAR},
+            </if>
+            <if test="nameBottom != null">
+                name_bottom = #{nameBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="uRegistType != null">
+                u_regist_type = #{uRegistType,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </operation>
+</table>

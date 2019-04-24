@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfAclDOMapper">
+    <!-- 自动生成,请修改 SELF_ACL.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfAclDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="SYS_ACL_MODULE_TYPE" property="sysAclModuleType" jdbcType="BIGINT" javaType="Long"/>
+            <result column="SYS_ACL_MODULE_PARENT_ID" property="sysAclModuleParentId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="NAME" property="name" jdbcType="VARCHAR" javaType="String"/>
+            <result column="REMARK" property="remark" jdbcType="VARCHAR" javaType="String"/>
+            <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+            <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_URL" property="sysAclUrl" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_CODE" property="sysAclCode" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_ICON" property="sysAclIcon" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_NAME" property="sysAclName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_TYPE" property="sysAclType" jdbcType="CHAR" javaType="String"/>
+            <result column="SYS_ACL_UUID" property="sysAclUuid" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_STATE" property="sysAclState" jdbcType="CHAR" javaType="String"/>
+            <result column="SYS_ACL_ACTION" property="sysAclAction" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_ROUTER" property="sysAclRouter" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_MODULE_LEVEL" property="sysAclModuleLevel" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_ACL_SEQ" property="sysAclSeq" jdbcType="INTEGER" javaType="Integer"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,SYS_ACL_MODULE_TYPE,SYS_ACL_MODULE_PARENT_ID,NAME,REMARK,DEL_FLAG,CREATE_BY,UPDATE_BY,SYS_ACL_URL,SYS_ACL_CODE,SYS_ACL_ICON,SYS_ACL_NAME,SYS_ACL_TYPE,SYS_ACL_UUID,SYS_ACL_STATE,SYS_ACL_ACTION,SYS_ACL_ROUTER,SYS_ACL_MODULE_LEVEL,SYS_ACL_SEQ,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+
+        <!--插入表:SELF_ACL-->
+        <insert id="insert" >
+                    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+                SELECT
+                LAST_INSERT_ID()
+            </selectKey>
+        INSERT INTO SELF_ACL(
+            
+            SYS_ACL_MODULE_TYPE
+            ,NAME
+            ,REMARK
+            ,DEL_FLAG
+            ,CREATE_BY
+            ,UPDATE_BY
+            ,SYS_ACL_URL
+            ,SYS_ACL_CODE
+            ,SYS_ACL_ICON
+            ,SYS_ACL_NAME
+            ,SYS_ACL_TYPE
+            ,SYS_ACL_UUID
+            ,SYS_ACL_STATE
+            ,SYS_ACL_ACTION
+            ,SYS_ACL_ROUTER
+            ,SYS_ACL_SEQ
+            ,CREATE_TIME
+            ,UPDATE_TIME
+        )VALUES(
+            
+            #{sysAclModuleType,jdbcType=BIGINT}
+            ,#{name,jdbcType=VARCHAR}
+            ,#{remark,jdbcType=VARCHAR}
+            ,#{delFlag,jdbcType=CHAR}
+            ,#{createBy,jdbcType=VARCHAR}
+            ,#{updateBy,jdbcType=VARCHAR}
+            ,#{sysAclUrl,jdbcType=VARCHAR}
+            ,#{sysAclCode,jdbcType=VARCHAR}
+            ,#{sysAclIcon,jdbcType=VARCHAR}
+            ,#{sysAclName,jdbcType=VARCHAR}
+            ,#{sysAclType,jdbcType=CHAR}
+            ,#{sysAclUuid,jdbcType=VARCHAR}
+            ,#{sysAclState,jdbcType=CHAR}
+            ,#{sysAclAction,jdbcType=VARCHAR}
+            ,#{sysAclRouter,jdbcType=VARCHAR}
+            ,#{sysAclSeq,jdbcType=INTEGER}
+            ,#{createTime,jdbcType=TIMESTAMP}
+            ,#{updateTime,jdbcType=TIMESTAMP}
+        )
+        </insert>
+
+        <!--更新表:SELF_ACL-->
+        <update id="update" >
+                    UPDATE /*MS-SELF-ACL-UPDATE*/ SELF_ACL
+            SET
+                    SYS_ACL_MODULE_TYPE = #{sysAclModuleType,jdbcType=BIGINT}
+                    ,NAME            = #{name,jdbcType=VARCHAR}
+                    ,REMARK          = #{remark,jdbcType=VARCHAR}
+                    ,DEL_FLAG        = #{delFlag,jdbcType=CHAR}
+                    ,CREATE_BY       = #{createBy,jdbcType=VARCHAR}
+                    ,UPDATE_BY       = #{updateBy,jdbcType=VARCHAR}
+                    ,SYS_ACL_URL     = #{sysAclUrl,jdbcType=VARCHAR}
+                    ,SYS_ACL_CODE    = #{sysAclCode,jdbcType=VARCHAR}
+                    ,SYS_ACL_ICON    = #{sysAclIcon,jdbcType=VARCHAR}
+                    ,SYS_ACL_NAME    = #{sysAclName,jdbcType=VARCHAR}
+                    ,SYS_ACL_TYPE    = #{sysAclType,jdbcType=CHAR}
+                    ,SYS_ACL_UUID    = #{sysAclUuid,jdbcType=VARCHAR}
+                    ,SYS_ACL_STATE   = #{sysAclState,jdbcType=CHAR}
+                    ,SYS_ACL_ACTION  = #{sysAclAction,jdbcType=VARCHAR}
+                    ,SYS_ACL_ROUTER  = #{sysAclRouter,jdbcType=VARCHAR}
+                    ,SYS_ACL_SEQ     = #{sysAclSeq,jdbcType=INTEGER}
+                    ,CREATE_TIME     = #{createTime,jdbcType=TIMESTAMP}
+                    ,UPDATE_TIME     = #{updateTime,jdbcType=TIMESTAMP}
+            WHERE
+                ID              = #{id,jdbcType=BIGINT}
+        </update>
+
+        <!--根据主键删除数据:SELF_ACL-->
+        <delete id="deleteById" >
+                    DELETE /*MS-SELF-ACL-DELETEBYID*/ FROM SELF_ACL
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </delete>
+
+        <!--根据主键获取数据:SELF_ACL-->
+        <select id="getById" resultMap="BaseResultMap">
+                    SELECT /*MS-SELF-ACL-GETBYID*/  <include refid="Base_Column_List" /> FROM SELF_ACL
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </select>
+</mapper>

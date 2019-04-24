@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfProductMapper">
+    <!-- 自动生成,请修改 SELF_PRODUCT.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfProductDO">
+        <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="PARAMETER_PACT_ID" property="parameterPactId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="PARAMETER_INDUSTRY_ID" property="parameterIndustryId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="UUID" property="uuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+        <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="PACT_TYPE" property="pactType" jdbcType="VARCHAR" javaType="String"/>
+        <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="PRODUCT_DESC" property="productDesc" jdbcType="VARCHAR" javaType="String"/>
+        <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" javaType="String"/>
+        <result column="REVIEW_STATUS" property="reviewStatus" jdbcType="CHAR" javaType="String"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <resultMap id="ProductListResultMap" type="com.xiaowei.mapper.result.ProductListResult">
+        <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="UUID" property="uuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="PARAMETER_PACT_ID" property="parameterPactId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="PACT_TYPE" property="pactType" jdbcType="CHAR" javaType="String"/>
+        <result column="PRODUCT_DESC" property="productDesc" jdbcType="VARCHAR" javaType="String"/>
+        <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="PARAMETER_INDUSTRY_ID" property="parameterIndustryId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="INDUSTRY_TYPE" property="industryType" jdbcType="VARCHAR" javaType="String"/>
+        <result column="REVIEW_STATUS" property="reviewStatus" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,PARAMETER_PACT_ID,PARAMETER_INDUSTRY_ID,UUID,DEL_FLAG,CREATE_BY,PACT_TYPE,UPDATE_BY,PRODUCT_DESC,PRODUCT_NAME,INDUSTRY_TYPE,REVIEW_STATUS,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+
+    <!--插入表:SELF_PRODUCT-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into self_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="parameterIndustryId != null">
+                parameter_industry_id,
+            </if>
+            <if test="industryType != null">
+                industry_type,
+            </if>
+            <if test="parameterPactId != null">
+                parameter_pact_id,
+            </if>
+            <if test="pactType != null">
+                pact_type,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="productDesc != null">
+                product_desc,
+            </if>
+            <if test="reviewStatus != null">
+                review_status,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="parameterIndustryId != null">
+                #{parameterIndustryId,jdbcType=BIGINT},
+            </if>
+            <if test="industryType != null">
+                #{industryType,jdbcType=VARCHAR},
+            </if>
+            <if test="parameterPactId != null">
+                #{parameterPactId,jdbcType=BIGINT},
+            </if>
+            <if test="pactType != null">
+                #{pactType,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productDesc != null">
+                #{productDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="reviewStatus != null">
+                #{reviewStatus,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--更新表:SELF_PRODUCT-->
+    <update id="update">
+        update self_product
+        <set>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="parameterIndustryId != null">
+                parameter_industry_id = #{parameterIndustryId,jdbcType=BIGINT},
+            </if>
+            <if test="industryType != null">
+                industry_type = #{industryType,jdbcType=VARCHAR},
+            </if>
+            <if test="parameterPactId != null">
+                parameter_pact_id = #{parameterPactId,jdbcType=BIGINT},
+            </if>
+            <if test="pactType != null">
+                pact_type = #{pactType,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productDesc != null">
+                product_desc = #{productDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="reviewStatus != null">
+                review_status = #{reviewStatus,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="productList" resultMap="ProductListResultMap">
+        SELECT
+        distinct
+        sp.id,
+        sp.product_name,
+        sp.parameter_pact_id,
+        sp.pact_type,
+        sp.parameter_industry_id,
+        sp.industry_type,
+        sp.product_desc,
+        sp.uuid,
+        sp.review_status
+        FROM
+        self_product sp
+        INNER JOIN self_role_product srp ON sp.id = srp.product_id
+        <if test="list!=null and list.size!=0">
+            and srp.role_id in
+            <foreach collection="list" item="item" separator="," open="(" close=")" index="">
+                #{item.roleId,jdbcType=BIGINT}
+            </foreach>
+        </if>
+        <trim prefix="WHERE" prefixOverrides="AND || OR">
+            <if test="parameterPactId!=null and parameterPactId!=''">
+                and sp.parameter_pact_id = #{parameterPactId,jdbcType=BIGINT}
+            </if>
+            <if test="productName!=null and productName!=''">
+                and sp.product_name like concat('%',#{productName},'%')
+            </if>
+        </trim>
+    </select>
+    <select id="dataByUuid" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from self_product
+        where uuid=#{uuid,jdbcType=VARCHAR}
+    </select>
+</mapper>

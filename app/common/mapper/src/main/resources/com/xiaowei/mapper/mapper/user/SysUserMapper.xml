@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.user.SysUserMapper">
+
+    <select id="userLoginCout" resultType="int">
+        SELECT
+        COUNT(id)
+        FROM
+        self_user
+        <trim prefixOverrides="and" prefix="where">
+            <if test="userName!=null and userName.trim()!=''">
+                AND u_login_name=#{userName}
+            </if>
+            <if test="uPhone!=null and uPhone.trim()!=''">
+                AND u_phone=#{uPhone}
+            </if>
+            <if test="userId!=null">
+                AND id!=#{userId}
+            </if>
+        </trim>
+    </select>
+
+    <update id="editUser" parameterType="com.xiaowei.mapper.dataobject.SelfUserDO">
+        update self_user
+        <set>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="compId != null">
+                comp_id = #{compId,jdbcType=BIGINT},
+            </if>
+            <if test="uLoginName != null">
+                u_login_name = #{uLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="uAuthSalt != null">
+                u__auth_salt = #{uAuthSalt,jdbcType=VARCHAR},
+            </if>
+            <if test="uLoginPwd != null">
+                u_login_pwd = #{uLoginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="uNickname != null">
+                u_nickname = #{uNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhone != null">
+                u_phone = #{uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="sysLoginNumber != null">
+                sys_login_number = #{sysLoginNumber,jdbcType=INTEGER},
+            </if>
+            <if test="nameTop != null">
+                name_top = #{nameTop,jdbcType=VARCHAR},
+            </if>
+            <if test="nameBottom != null">
+                name_bottom = #{nameBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.xiaowei.mapper.dataobject.SelfUserDO">
+        insert into self_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="compId != null">
+                comp_id,
+            </if>
+            <if test="uLoginName != null">
+                u_login_name,
+            </if>
+            <if test="uAuthSalt != null">
+                u__auth_salt,
+            </if>
+            <if test="uLoginPwd != null">
+                u_login_pwd,
+            </if>
+            <if test="uNickname != null">
+                u_nickname,
+            </if>
+            <if test="uPhone != null">
+                u_phone,
+            </if>
+            <if test="sysLoginNumber != null">
+                sys_login_number,
+            </if>
+            <if test="nameTop != null">
+                name_top,
+            </if>
+            <if test="nameBottom != null">
+                name_bottom,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="uRegistType != null">
+                u_regist_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="compId != null">
+                #{compId,jdbcType=BIGINT},
+            </if>
+            <if test="uLoginName != null">
+                #{uLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="uAuthSalt != null">
+                #{uAuthSalt,jdbcType=VARCHAR},
+            </if>
+            <if test="uLoginPwd != null">
+                #{uLoginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="uNickname != null">
+                #{uNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="uPhone != null">
+                #{uPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="sysLoginNumber != null">
+                #{sysLoginNumber,jdbcType=INTEGER},
+            </if>
+            <if test="nameTop != null">
+                #{nameTop,jdbcType=VARCHAR},
+            </if>
+            <if test="nameBottom != null">
+                #{nameBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uRegistType != null">
+                #{uRegistType,jdbcType=ChAR},
+            </if>
+
+        </trim>
+    </insert>
+    <select id="getUserByUUID" resultMap="userLogin">
+        select
+         id, uuid, comp_id, u_login_name, u__auth_salt, u_login_pwd,
+    u_nickname, u_phone, sys_login_number, name_top, name_bottom, remark,
+    state, del_flag, create_by, update_by, create_time, update_time,u_regist_type
+        from self_user
+        where uuid = #{uuid}
+    </select>
+    <resultMap id="userLogin" type="com.xiaowei.mapper.dataobject.SelfUserDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="uuid" jdbcType="VARCHAR" property="uuid"/>
+        <result column="comp_id" jdbcType="BIGINT" property="compId"/>
+        <result column="u_login_name" jdbcType="VARCHAR" property="uLoginName"/>
+        <result column="u__auth_salt" jdbcType="VARCHAR" property="uAuthSalt"/>
+        <result column="u_login_pwd" jdbcType="VARCHAR" property="uLoginPwd"/>
+        <result column="u_nickname" jdbcType="VARCHAR" property="uNickname"/>
+        <result column="u_phone" jdbcType="VARCHAR" property="uPhone"/>
+        <result column="sys_login_number" jdbcType="INTEGER" property="sysLoginNumber"/>
+        <result column="name_top" jdbcType="VARCHAR" property="nameTop"/>
+        <result column="name_bottom" jdbcType="BIGINT" property="nameBottom"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="state" jdbcType="CHAR" property="state"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="u_regist_type" jdbcType="CHAR" property="uRegistType"/>
+    </resultMap>
+
+    <select id="userPage" parameterType="com.xiaowei.mapper.mapper.req.UserPageReq" resultMap="userPage">
+        SELECT id, u_nickname, uuid, u_login_name,
+        comp_id, u_phone,
+        sys_login_number, state, del_flag,create_time
+        FROM
+        self_user
+        <trim prefix="where" prefixOverrides="and">
+            <if test="uNickname!=null and uNickname!=''">
+                AND u_nickname LIKE CONCAT('%',#{uNickname},'%')
+            </if>
+            <if test="uLoginName!=null and uLoginName!=''">
+                AND u_login_name LIKE CONCAT('%',#{uLoginName},'%')
+            </if>
+            <if test="compId!=null">
+                AND comp_id = #{compId}
+            </if>
+        </trim>
+        ORDER BY id desc
+    </select>
+    <resultMap id="userPage" type="com.xiaowei.mapper.mapper.req.UserPage">
+        <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+        <result column="NAME_TOP" property="nameTop" jdbcType="VARCHAR" javaType="String"/>
+        <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="NAME_BOTTOM" property="nameBottom" jdbcType="VARCHAR" javaType="String"/>
+        <result column="state" property="state" jdbcType="CHAR" javaType="String"/>
+        <result column="u_nickname" property="uNickname" jdbcType="VARCHAR" javaType="String"/>
+        <result column="uuid" property="uuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="u_phone" property="uPhone" jdbcType="VARCHAR" javaType="String"/>
+        <result column="sys_login_number" property="sysLoginNumber" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="u_login_name" property="uLoginName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="comp_id" property="compId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <collection property="roleNameList" column="id" select="getRoleLiistByUserId"/>
+    </resultMap>
+    <select id="getRoleLiistByUserId" resultMap="getRoleLiistByUserId">
+        SELECT id,role_name,role_type,comp_id
+        FROM self_role
+        WHERE id IN( SELECT role_id FROM self_role_user where user_id=#{id})
+    </select>
+    <resultMap id="getRoleLiistByUserId" type="com.xiaowei.mapper.dataobject.SelfRoleDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="uuid" jdbcType="VARCHAR" property="uuid"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_type" jdbcType="CHAR" property="roleType"/>
+        <result column="comp_id" jdbcType="BIGINT" property="compId"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+    </resultMap>
+    <select id="selectBypassword" resultMap="userLogin" parameterType="java.lang.String">
+    SELECT * FROM self_user
+     WHERE
+  u_login_pwd = #{passwords} AND u_nickname = #{username}
+   </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xiaowei.mapper.dataobject.SelfRoleDO">
+        update self_user
+        <set>
+            <if test="uNickname != null">
+                u_nickname = #{uNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="uLoginPwd != null">
+                u_login_pwd = #{uLoginPwd,jdbcType=VARCHAR},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+</mapper>

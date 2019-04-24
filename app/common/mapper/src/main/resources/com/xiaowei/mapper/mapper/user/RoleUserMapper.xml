@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.roleuser.RoleUserMapper">
+    <resultMap id="BaseResultMap" type="com.xiaowei.mapper.dataobject.SelfRoleUserDO">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="comp_id" property="compId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,COMP_ID,ROLE_ID,USER_ID,CREATE_TIME
+    </sql>
+
+
+
+    <insert id="batchaddRoleUser" parameterType="com.xiaowei.mapper.dataobject.SelfRoleUserDO">
+        <foreach collection="list" item="ite" separator=";">
+            insert into self_role_user ( role_id,
+            user_id, comp_id,create_time
+           )
+            values (  #{ite.roleId,jdbcType=BIGINT},
+            #{ite.userId,jdbcType=BIGINT}, #{ite.compId,jdbcType=BIGINT},
+           #{ite.createTime,jdbcType=TIMESTAMP})
+
+        </foreach>
+    </insert>
+    <delete id="deleteByUserId" parameterType="map">
+    DELETE  FROM self_role_user WHERE user_id=#{userid}
+</delete>
+
+</mapper>

@@ -1,0 +1,41 @@
+<!DOCTYPE table SYSTEM "../config/table-config-1.0.dtd">
+<table sqlname="SELF_ACL_DEFAULT" physicalName="SELF_ACL_DEFAULT" remark="默认权限">
+    <!--  特殊字符说明  &lt;&gt;   <> -->
+
+    <operation name="insert" paramtype="object" remark="插入表:SELF_ACL_DEFAULT">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO SELF_ACL_DEFAULT(
+
+        ACL_ID
+        )VALUES(
+
+        #{aclId,jdbcType=BIGINT}
+        )
+    </operation>
+
+    <operation name="update" paramtype="object" remark="更新表:SELF_ACL_DEFAULT">
+        UPDATE SELF_ACL_DEFAULT
+        SET
+        ACL_ID = #{aclId,jdbcType=BIGINT}
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+    </operation>
+
+    <operation name="deleteById" multiplicity="one" remark="根据主键删除数据:SELF_ACL_DEFAULT">
+        DELETE FROM SELF_ACL_DEFAULT
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+    </operation>
+
+    <operation name="getById" multiplicity="one" remark="根据主键获取数据:SELF_ACL_DEFAULT">
+        SELECT * FROM SELF_ACL_DEFAULT
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+    </operation>
+    <operation name="getAll" multiplicity="many">
+        SELECT acl_id,sys_acl_module_type from self_acl_default
+    </operation>
+</table>

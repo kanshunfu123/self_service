@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfTemplateMainMapper">
+    <!-- 自动生成,请修改 SELF_TEMPLATE_MAIN.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfTemplateMainDO">
+        <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="PARAMETER_TYPE_ID" property="parameterTypeId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="UUID" property="uuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+        <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="CODE_LEVEL" property="codeLevel" jdbcType="VARCHAR" javaType="String"/>
+        <result column="TEMPLATE_TYPE" property="templateType" jdbcType="CHAR" javaType="String"/>
+        <result column="ATTRIBUTE_DESC" property="attributeDesc" jdbcType="VARCHAR" javaType="String"/>
+        <result column="ATTRIBUTE_TYPE" property="attributeType" jdbcType="VARCHAR" javaType="String"/>
+        <result column="ATTRIBUTE_UNIT" property="attributeUnit" jdbcType="VARCHAR" javaType="String"/>
+        <result column="ATTRIBUTE_ENAME" property="attributeEname" jdbcType="VARCHAR" javaType="String"/>
+        <result column="ATTRIBUTE_SHORT" property="attributeShort" jdbcType="VARCHAR" javaType="String"/>
+        <result column="ATTRIBUTE_ZNAME" property="attributeZname" jdbcType="VARCHAR" javaType="String"/>
+        <result column="ATTRIBUTE_DEFAULTS" property="attributeDefaults" jdbcType="VARCHAR" javaType="String"/>
+        <result column="IS_SELECT" property="isSelect" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="IS_DISABLE" property="isDisable" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="ATTRIBUTE_IS_WRITE" property="attributeIsWrite" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+
+    <resultMap id="roleByUserId"  type="com.xiaowei.mapper.dataobject.SelfRoleUserDO">
+        <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="COMP_ID" property="compId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="USER_ID" property="userId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,PARENT_ID,PARAMETER_TYPE_ID,UUID,DEL_FLAG,CREATE_BY,UPDATE_BY,CODE_LEVEL,TEMPLATE_TYPE,ATTRIBUTE_DESC,ATTRIBUTE_TYPE,ATTRIBUTE_UNIT,ATTRIBUTE_ENAME,ATTRIBUTE_SHORT,ATTRIBUTE_ZNAME,ATTRIBUTE_DEFAULTS,IS_SELECT,IS_DISABLE,ATTRIBUTE_IS_WRITE,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+    <!--插入表:SELF_TEMPLATE_MAIN-->
+    <insert id="insert" >
+        insert into self_template_main
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="uuid != null" >
+                uuid,
+            </if>
+            <if test="templateType != null" >
+                template_type,
+            </if>
+            <if test="parentId != null" >
+                parent_id,
+            </if>
+            <if test="codeLevel != null" >
+                code_level,
+            </if>
+            <if test="attributeEname != null" >
+                attribute_ename,
+            </if>
+            <if test="attributeZname != null" >
+                attribute_zname,
+            </if>
+            <if test="attributeDesc != null" >
+                attribute_desc,
+            </if>
+            <if test="attributeShort != null" >
+                attribute_short,
+            </if>
+            <if test="attributeUnit != null" >
+                attribute_unit,
+            </if>
+            <if test="parameterTypeId != null" >
+                parameter_type_id,
+            </if>
+            <if test="attributeType != null" >
+                attribute_type,
+            </if>
+            <if test="attributeIsWrite != null" >
+                attribute_is_write,
+            </if>
+            <if test="attributeDefaults != null" >
+                attribute_defaults,
+            </if>
+            <if test="isSelect != null" >
+                is_select,
+            </if>
+            <if test="isDisable != null" >
+                is_disable,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="uuid != null" >
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="templateType != null" >
+                #{templateType,jdbcType=CHAR},
+            </if>
+            <if test="parentId != null" >
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="codeLevel != null" >
+                #{codeLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeEname != null" >
+                #{attributeEname,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeZname != null" >
+                #{attributeZname,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeDesc != null" >
+                #{attributeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeShort != null" >
+                #{attributeShort,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeUnit != null" >
+                #{attributeUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="parameterTypeId != null" >
+                #{parameterTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="attributeType != null" >
+                #{attributeType,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeIsWrite != null" >
+                #{attributeIsWrite,jdbcType=INTEGER},
+            </if>
+            <if test="attributeDefaults != null" >
+                #{attributeDefaults,jdbcType=VARCHAR},
+            </if>
+            <if test="isSelect != null" >
+                #{isSelect,jdbcType=INTEGER},
+            </if>
+            <if test="isDisable != null" >
+                #{isDisable,jdbcType=INTEGER},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--更新表:SELF_TEMPLATE_MAIN-->
+    <update id="update" >
+        update self_template_main
+        <set >
+            <if test="uuid != null" >
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="templateType != null" >
+                template_type = #{templateType,jdbcType=CHAR},
+            </if>
+            <if test="parentId != null" >
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="codeLevel != null" >
+                code_level = #{codeLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeEname != null" >
+                attribute_ename = #{attributeEname,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeZname != null" >
+                attribute_zname = #{attributeZname,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeDesc != null" >
+                attribute_desc = #{attributeDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeShort != null" >
+                attribute_short = #{attributeShort,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeUnit != null" >
+                attribute_unit = #{attributeUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="parameterTypeId != null" >
+                parameter_type_id = #{parameterTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="attributeType != null" >
+                attribute_type = #{attributeType,jdbcType=VARCHAR},
+            </if>
+            <if test="attributeIsWrite != null" >
+                attribute_is_write = #{attributeIsWrite,jdbcType=INTEGER},
+            </if>
+            <if test="attributeDefaults != null" >
+                attribute_defaults = #{attributeDefaults,jdbcType=VARCHAR},
+            </if>
+            <if test="isSelect != null" >
+                is_select = #{isSelect,jdbcType=INTEGER},
+            </if>
+            <if test="isDisable != null" >
+                is_disable = #{isDisable,jdbcType=INTEGER},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="countByMix" parameterType="map" resultType="int">
+        select count(id) from self_template_main
+        <trim prefix="WHERE" prefixOverrides="AND || OR">
+            <if test="parentId!=null">
+                parent_id=#{parentId,jdbcType=BIGINT}
+            </if>
+            <if test="attributeEname!=null and attributeEname!=''">
+                attribute_ename=#{attributeEname,jdbcType=VARCHAR}
+            </if>
+            <if test="id!=null">
+                id!=#{id,jdbcType=BIGINT}
+            </if>
+        </trim>
+    </select>
+    <select id="dataById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from self_template_main
+        where id=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="templateList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from self_template_main
+        where template_type=#{templateType,jdbcType=VARCHAR}
+    </select>
+
+    <select id="roleByUserId" resultMap="roleByUserId">
+        select id,role_id,user_id,comp_id,create_time
+        from self_role_user
+        where user_id=#{userId,jdbcType=BIGINT}
+    </select>
+
+</mapper>

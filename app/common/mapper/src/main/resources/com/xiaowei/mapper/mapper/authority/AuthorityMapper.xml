@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.authority.AuthorityMapper">
+    <select id="rolesByUserId" parameterType="map" resultType="long">
+        SELECT
+        role_id
+        FROM self_role_user WHERE user_id=#{userId}
+    </select>
+    <select id="aclsByRoleId" parameterType="map" resultType="long">
+        SELECT
+        sys_acl_id
+        FROM self_role_acl WHERE
+        <if test="sys_acl_permission_type!=null">
+            sys_acl_permission_type=#{sys_acl_permission_type} AND
+        </if>
+        sys_role_id IN
+        <foreach collection="roleIds" close=")" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </select>
+    <select id="rolesAdminByGroupId" parameterType="map" resultType="long">
+        SELECT
+        id
+        FROM self_role WHERE comp_id=#{groupId} AND role_type='0'
+    </select>
+    <select id="getAllAcl" parameterType="map" resultMap="getAllAcl">
+        SELECT
+        id, sys_acl_uuid, sys_acl_module_parent_id, sys_acl_module_level, sys_acl_action,
+        sys_acl_router, sys_acl_name, sys_acl_module_type, sys_acl_url, sys_acl_type, sys_acl_icon,
+        sys_acl_seq, sys_acl_state, remark, del_flag, create_by, create_time, update_time,
+        update_by, name, sys_acl_code
+        FROM  self_acl
+        <trim prefixOverrides="and" prefix="where">
+            <if test="aclPermissionType!=null">
+                AND sys_acl_module_type = #{aclPermissionType,jdbcType=BIGINT}
+            </if>
+            <if test="userAclIdList!=null and userAclIdList.size()!=0">
+                AND id IN
+                <foreach collection="userAclIdList" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </trim>
+    </select>
+    <resultMap id="getAllAcl" type="com.xiaowei.mapper.dataobject.SelfAclDO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="sys_acl_uuid" jdbcType="VARCHAR" property="sysAclUuid" />
+        <result column="sys_acl_module_parent_id" jdbcType="BIGINT" property="sysAclModuleParentId" />
+        <result column="sys_acl_module_level" jdbcType="VARCHAR" property="sysAclModuleLevel" />
+        <result column="sys_acl_action" jdbcType="VARCHAR" property="sysAclAction" />
+        <result column="sys_acl_router" jdbcType="VARCHAR" property="sysAclRouter" />
+        <result column="sys_acl_name" jdbcType="VARCHAR" property="sysAclName" />
+        <result column="sys_acl_module_type" jdbcType="BIGINT" property="sysAclModuleType" />
+        <result column="sys_acl_url" jdbcType="VARCHAR" property="sysAclUrl" />
+        <result column="sys_acl_type" jdbcType="CHAR" property="sysAclType" />
+        <result column="sys_acl_icon" jdbcType="VARCHAR" property="sysAclIcon" />
+        <result column="sys_acl_seq" jdbcType="INTEGER" property="sysAclSeq" />
+        <result column="sys_acl_state" jdbcType="CHAR" property="sysAclState" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="sys_acl_code" jdbcType="VARCHAR" property="sysAclCode" />
+    </resultMap>
+</mapper>

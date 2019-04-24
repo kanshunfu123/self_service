@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfCompanyDOMapper">
+    <!-- 自动生成,请修改 SELF_COMPANY.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfCompanyDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="COMP_AREA" property="compArea" jdbcType="BIGINT" javaType="Long"/>
+            <result column="COMP_CITY" property="compCity" jdbcType="BIGINT" javaType="Long"/>
+            <result column="COMP_PROVINCE" property="compProvince" jdbcType="BIGINT" javaType="Long"/>
+            <result column="COMP_STREET_ID" property="compStreetId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="UUID" property="uuid" jdbcType="VARCHAR" javaType="String"/>
+            <result column="STATE" property="state" jdbcType="CHAR" javaType="String"/>
+            <result column="REMARK" property="remark" jdbcType="VARCHAR" javaType="String"/>
+            <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+            <result column="COMP_NAME" property="compName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_EMAIL" property="compEmail" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_PHONE" property="compPhone" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_STREET" property="compStreet" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_ADDRESS" property="compAddress" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_AREA_NAME" property="compAreaName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_CITY_NAME" property="compCityName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_CONTACTS" property="compContacts" jdbcType="VARCHAR" javaType="String"/>
+            <result column="COMP_REGIST_TYPE" property="compRegistType" jdbcType="CHAR" javaType="String"/>
+            <result column="COMP_PROVINCE_NAME" property="compProvinceName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,COMP_AREA,COMP_CITY,COMP_PROVINCE,COMP_STREET_ID,UUID,STATE,REMARK,DEL_FLAG,COMP_NAME,CREATE_BY,UPDATE_BY,COMP_EMAIL,COMP_PHONE,COMP_STREET,COMP_ADDRESS,COMP_AREA_NAME,COMP_CITY_NAME,COMP_CONTACTS,COMP_REGIST_TYPE,COMP_PROVINCE_NAME,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+
+        <!--插入表:SELF_COMPANY-->
+        <insert id="insert" >
+                <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO SELF_COMPANY(
+        COMP_AREA
+        ,COMP_CITY
+        ,COMP_PROVINCE
+        ,COMP_STREET_ID
+        ,UUID
+        ,STATE
+        ,REMARK
+        ,DEL_FLAG
+        ,COMP_NAME
+        ,CREATE_BY
+        ,UPDATE_BY
+        ,COMP_EMAIL
+        ,COMP_PHONE
+        ,COMP_STREET
+        ,COMP_ADDRESS
+        ,COMP_AREA_NAME
+        ,COMP_CITY_NAME
+        ,COMP_CONTACTS
+        ,COMP_PROVINCE_NAME
+        ,CREATE_TIME
+        ,UPDATE_TIME
+        )VALUES(
+        #{compArea,jdbcType=BIGINT}
+        ,#{compCity,jdbcType=BIGINT}
+        ,#{compProvince,jdbcType=BIGINT}
+        ,#{compStreetId,jdbcType=BIGINT}
+        ,#{uuid,jdbcType=VARCHAR}
+        ,#{state,jdbcType=CHAR}
+        ,#{remark,jdbcType=VARCHAR}
+        ,#{delFlag,jdbcType=CHAR}
+        ,#{compName,jdbcType=VARCHAR}
+        ,#{createBy,jdbcType=VARCHAR}
+        ,#{updateBy,jdbcType=VARCHAR}
+        ,#{compEmail,jdbcType=VARCHAR}
+        ,#{compPhone,jdbcType=VARCHAR}
+        ,#{compStreet,jdbcType=VARCHAR}
+        ,#{compAddress,jdbcType=VARCHAR}
+        ,#{compAreaName,jdbcType=VARCHAR}
+        ,#{compCityName,jdbcType=VARCHAR}
+        ,#{compContacts,jdbcType=VARCHAR}
+        ,#{compProvinceName,jdbcType=VARCHAR}
+        ,#{createTime,jdbcType=TIMESTAMP}
+        ,#{updateTime,jdbcType=TIMESTAMP}
+        )
+        </insert>
+
+        <!--更新表:SELF_COMPANY-->
+        <update id="update" >
+                UPDATE /*MS-SELF-COMPANY-UPDATE*/ SELF_COMPANY
+        SET
+        COMP_AREA = #{compArea,jdbcType=BIGINT}
+        ,COMP_CITY = #{compCity,jdbcType=BIGINT}
+        ,COMP_PROVINCE = #{compProvince,jdbcType=BIGINT}
+        ,COMP_STREET_ID = #{compStreetId,jdbcType=BIGINT}
+        ,UUID = #{uuid,jdbcType=VARCHAR}
+        ,STATE = #{state,jdbcType=CHAR}
+        ,REMARK = #{remark,jdbcType=VARCHAR}
+        ,DEL_FLAG = #{delFlag,jdbcType=CHAR}
+        ,COMP_NAME = #{compName,jdbcType=VARCHAR}
+        ,CREATE_BY = #{createBy,jdbcType=VARCHAR}
+        ,UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+        ,COMP_EMAIL = #{compEmail,jdbcType=VARCHAR}
+        ,COMP_PHONE = #{compPhone,jdbcType=VARCHAR}
+        ,COMP_STREET = #{compStreet,jdbcType=VARCHAR}
+        ,COMP_ADDRESS = #{compAddress,jdbcType=VARCHAR}
+        ,COMP_AREA_NAME = #{compAreaName,jdbcType=VARCHAR}
+        ,COMP_CITY_NAME = #{compCityName,jdbcType=VARCHAR}
+        ,COMP_CONTACTS = #{compContacts,jdbcType=VARCHAR}
+        ,COMP_PROVINCE_NAME = #{compProvinceName,jdbcType=VARCHAR}
+        ,CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        ,UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+        </update>
+
+        <!--根据主键删除数据:SELF_COMPANY-->
+        <delete id="deleteById" >
+                DELETE /*MS-SELF-COMPANY-DELETEBYID*/ FROM SELF_COMPANY
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+        </delete>
+
+        <!--根据主键获取数据:SELF_COMPANY-->
+        <select id="getById" resultMap="BaseResultMap">
+                SELECT /*MS-SELF-COMPANY-GETBYID*/  <include refid="Base_Column_List" /> FROM self_company
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+        </select>
+
+        <!--checkComp-->
+        <select id="checkComp" resultType="int">
+                select /*MS-SELF-COMPANY-CHECKCOMP*/ count(id) from self_company
+        <trim prefixOverrides="and" prefix="where">
+            <if test="comp_name!=null and comp_name.trim()!=''">
+                and comp_name=#{comp_name,jdbcType=VARCHAR}
+            </if>
+            <if test="comp_email!=null and comp_email.trim()!=''">
+                and comp_email=#{comp_email,jdbcType=VARCHAR}
+            </if>
+            <if test="comp_phone!=null and comp_phone.trim()!=''">
+                and comp_phone=#{comp_phone,jdbcType=VARCHAR}
+            </if>
+            <if test="comp_phone!=null and comp_phone.trim()!=''">
+                and comp_phone=#{comp_phone,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        </select>
+
+        <!--insertSelective-->
+        <insert id="insertSelective" >
+                <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        insert into self_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="compName != null">
+                comp_name,
+            </if>
+            <if test="compEmail != null">
+                comp_email,
+            </if>
+            <if test="compContacts != null">
+                comp_contacts,
+            </if>
+            <if test="compPhone != null">
+                comp_phone,
+            </if>
+            <if test="compProvinceName != null">
+                comp_province_name,
+            </if>
+            <if test="compProvince != null">
+                comp_province,
+            </if>
+            <if test="compCityName != null">
+                comp_city_name,
+            </if>
+            <if test="compCity != null">
+                comp_city,
+            </if>
+            <if test="compAreaName != null">
+                comp_area_name,
+            </if>
+            <if test="compArea != null">
+                comp_area,
+            </if>
+            <if test="compStreet != null">
+                comp_street,
+            </if>
+            <if test="compStreetId != null">
+                comp_street_id,
+            </if>
+            <if test="compAddress != null">
+                comp_address,
+            </if>
+            <if test="compRegistType != null">
+                comp_regist_type,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="compName != null">
+                #{compName,jdbcType=VARCHAR},
+            </if>
+            <if test="compEmail != null">
+                #{compEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="compContacts != null">
+                #{compContacts,jdbcType=VARCHAR},
+            </if>
+            <if test="compPhone != null">
+                #{compPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="compProvinceName != null">
+                #{compProvinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="compProvince != null">
+                #{compProvince,jdbcType=BIGINT},
+            </if>
+            <if test="compCityName != null">
+                #{compCityName,jdbcType=VARCHAR},
+            </if>
+            <if test="compCity != null">
+                #{compCity,jdbcType=BIGINT},
+            </if>
+            <if test="compAreaName != null">
+                #{compAreaName,jdbcType=VARCHAR},
+            </if>
+            <if test="compArea != null">
+                #{compArea,jdbcType=BIGINT},
+            </if>
+            <if test="compStreet != null">
+                #{compStreet,jdbcType=VARCHAR},
+            </if>
+            <if test="compStreetId != null">
+                #{compStreetId,jdbcType=BIGINT},
+            </if>
+            <if test="compAddress != null">
+                #{compAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="compRegistType != null">
+                #{compRegistType,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        </insert>
+
+        <!--updateByPrimaryKeySelective-->
+        <update id="updateByPrimaryKeySelective" >
+                update /*MS-SELF-COMPANY-UPDATEBYPRIMARYKEYSELECTIVE*/ self_company
+        <set>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="compName != null">
+                comp_name = #{compName,jdbcType=VARCHAR},
+            </if>
+            <if test="compEmail != null">
+                comp_email = #{compEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="compContacts != null">
+                comp_contacts = #{compContacts,jdbcType=VARCHAR},
+            </if>
+            <if test="compPhone != null">
+                comp_phone = #{compPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="compProvinceName != null">
+                comp_province_name = #{compProvinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="compProvince != null">
+                comp_province = #{compProvince,jdbcType=BIGINT},
+            </if>
+            <if test="compCityName != null">
+                comp_city_name = #{compCityName,jdbcType=VARCHAR},
+            </if>
+            <if test="compCity != null">
+                comp_city = #{compCity,jdbcType=BIGINT},
+            </if>
+            <if test="compAreaName != null">
+                comp_area_name = #{compAreaName,jdbcType=VARCHAR},
+            </if>
+            <if test="compArea != null">
+                comp_area = #{compArea,jdbcType=BIGINT},
+            </if>
+            <if test="compStreet != null">
+                comp_street = #{compStreet,jdbcType=VARCHAR},
+            </if>
+            <if test="compStreetId != null">
+                comp_street_id = #{compStreetId,jdbcType=BIGINT},
+            </if>
+            <if test="compAddress != null">
+                comp_address = #{compAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="compRegistType != null">
+                comp_regist_type = #{compRegistType,jdbcType=CHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+        </update>
+</mapper>

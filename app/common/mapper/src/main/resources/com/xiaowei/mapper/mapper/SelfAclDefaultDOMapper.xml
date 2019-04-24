@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaowei.mapper.mapper.SelfAclDefaultDOMapper">
+    <!-- 自动生成,请修改 SELF_ACL_DEFAULT.xml -->
+    <resultMap id="BaseResultMap"  type="com.xiaowei.mapper.dataobject.SelfAclDefaultDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="ACL_ID" property="aclId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="SYS_ACL_MODULE_TYPE" property="sysAclModuleType" jdbcType="BIGINT" javaType="Long"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,ACL_ID,SYS_ACL_MODULE_TYPE
+    </sql>
+
+
+        <!--插入表:SELF_ACL_DEFAULT-->
+        <insert id="insert" >
+                <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO SELF_ACL_DEFAULT(
+        ACL_ID
+        )VALUES(
+        #{aclId,jdbcType=BIGINT}
+        )
+        </insert>
+
+        <!--更新表:SELF_ACL_DEFAULT-->
+        <update id="update" >
+                UPDATE /*MS-SELF-ACL-DEFAULT-UPDATE*/ SELF_ACL_DEFAULT
+        SET
+        ACL_ID = #{aclId,jdbcType=BIGINT}
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+        </update>
+
+        <!--根据主键删除数据:SELF_ACL_DEFAULT-->
+        <delete id="deleteById" >
+                DELETE /*MS-SELF-ACL-DEFAULT-DELETEBYID*/ FROM SELF_ACL_DEFAULT
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+        </delete>
+
+        <!--根据主键获取数据:SELF_ACL_DEFAULT-->
+        <select id="getById" resultMap="BaseResultMap">
+                SELECT /*MS-SELF-ACL-DEFAULT-GETBYID*/  <include refid="Base_Column_List" /> FROM SELF_ACL_DEFAULT
+        WHERE
+        ID = #{id,jdbcType=BIGINT}
+        </select>
+
+        <!--getAll-->
+        <select id="getAll" resultMap="BaseResultMap">
+                SELECT /*MS-SELF-ACL-DEFAULT-GETALL*/  acl_id,sys_acl_module_type from self_acl_default
+        </select>
+</mapper>
